@@ -7,7 +7,7 @@ Este manual descreve como utilizar o Sistema Bancário via linha de comando.
 Para iniciar o sistema, navegue até o diretório `banco_modular` e execute o seguinte comando:
 
 ```bash
-python main.py
+python src/main.py
 ```
 
 ### Carregando Dados Anteriores
@@ -44,6 +44,17 @@ Para as operações de `Depositar`, `Sacar` e `Transferir`, o sistema solicitar�
 2.  A **seleção da conta** (se o cliente tiver mais de uma).
 3.  O **valor** da operação.
 
+### Extrato
+
+Ao selecionar a opção de extrato, o sistema perguntará se você deseja filtrar os resultados:
+
+`Deseja filtrar por tipo de transação? (s/d/t para saque/depósito/transferência ou deixe em branco para todas):`
+
+-   Pressione `s` para ver apenas saques.
+-   Pressione `d` para ver apenas depósitos.
+-   Pressione `t` para ver apenas transferências.
+-   Pressione `Enter` (deixar em branco) para ver todas as transações.
+
 ### Novo Usuário
 
 O sistema solicitará os seguintes dados para o cadastro:
@@ -66,3 +77,9 @@ No menu de configurações (`[cf]`), você pode alterar o seguinte parâmetro:
 -   **Salvar dados ao sair:** Pressione `1` para alternar entre `Ativado` e `Desativado`.
     -   Se **Ativado**, todos os dados da sessão atual serão salvos em um arquivo (`bank_data.pkl`) quando você sair do programa.
     -   Se **Desativado**, nenhum dado será salvo.
+
+## 5. Para Desenvolvedores
+
+### Log de Transações
+
+Todas as operações de criação (cliente, conta) e transações financeiras (depósito, saque, transferência) são registradas no console. O log inclui a data, hora, nome da função, argumentos e o valor de retorno, facilitando o rastreamento e a depuração.

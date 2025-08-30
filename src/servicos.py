@@ -1,5 +1,6 @@
 from modelos import Deposito, Saque, Transferencia, PessoaFisica, ContaCorrente, ContaPoupanca, ContaInvestimento, Conta
 from excecoes import RegraDeNegocioError
+from decorators import log
 
 def filtrar_cliente(cpf, clientes):
     clientes_filtrados = [cliente for cliente in clientes if cliente.cpf == cpf]
@@ -12,14 +13,17 @@ def _encontrar_cc_pai(cliente, conta_vinculada):
             return conta
     return None
 
+@log
 def realizar_deposito(conta, valor):
     deposito = Deposito(valor)
     conta.cliente.realizar_transacao(conta, deposito)
 
+@log
 def realizar_saque(conta, valor):
     saque = Saque(valor)
     conta.cliente.realizar_transacao(conta, saque)
 
+@log
 def realizar_transferencia(cliente, conta_origem, conta_destino, valor):
     if isinstance(conta_destino, ContaInvestimento):
         cc_pai = _encontrar_cc_pai(cliente, conta_destino)
@@ -35,11 +39,13 @@ def realizar_transferencia(cliente, conta_origem, conta_destino, valor):
     transferencia = Transferencia(valor, conta_destino)
     cliente.realizar_transacao(conta_origem, transferencia)
 
+@log
 def criar_novo_cliente(clientes, **kwargs):
     novo_cliente = PessoaFisica(**kwargs)
     clientes.append(novo_cliente)
     return novo_cliente
 
+@log
 def criar_nova_conta(cliente, contas, tipo_conta, **kwargs):
     numero_conta = len(contas) + 1
     if tipo_conta == "corrente":

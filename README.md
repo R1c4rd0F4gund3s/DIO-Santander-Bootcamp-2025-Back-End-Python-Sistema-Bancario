@@ -15,15 +15,20 @@ Este projeto é uma simulação de um sistema bancário desenvolvido em Python, 
 
 ## Arquitetura do Projeto
 
-O código foi refatorado para uma arquitetura modular, separando as responsabilidades em diferentes arquivos para garantir um baixo acoplamento e alta coesão.
+O projeto foi organizado nas seguintes pastas:
 
--   `main.py`: Ponto de entrada da aplicação. Responsável pela interface com o usuário (menus, inputs, prints) e pela orquestração das chamadas aos outros módulos.
--   `modelos.py`: Contém as classes que representam os dados do sistema (Cliente, Conta, Transacao, etc.).
--   `servicos.py`: Contém a lógica de negócio pura, como as regras para realizar uma transferência ou um saque.
--   `excecoes.py`: Define as exceções customizadas para um tratamento de erros mais claro e robusto.
--   `persistencia.py`: Encapsula a lógica de salvar e carregar os dados da aplicação em um arquivo.
--   `utils.py`: Funções auxiliares para validação e formatação de entradas do usuário.
--   `config.py`: Arquivo central para constantes e configurações da aplicação, como limites de saque, quantidade de transações e tipos de ativos de investimento.
+-   **/src**: Contém todo o código-fonte da aplicação.
+    -   `main.py`: Ponto de entrada da aplicação (UI).
+    -   `modelos.py`: Classes de dados (Cliente, Conta, etc.).
+    -   `servicos.py`: Lógica de negócio.
+    -   `decorators.py`: Decoradores customizados.
+    -   `excecoes.py`: Exceções customizadas.
+    -   `persistencia.py`: Lógica de persistência de dados.
+    -   `utils.py`: Funções utilitárias.
+    -   `config.py`: Constantes e configurações.
+-   **/doc**: Armazena a documentação do projeto.
+-   **/images**: Para armazenar imagens (se aplicável).
+-   **/scripts**: Para scripts auxiliares (se aplicável).
 
 ## Como Executar
 
@@ -33,15 +38,15 @@ O código foi refatorado para uma arquitetura modular, separando as responsabili
 4.  Execute o seguinte comando:
 
     ```bash
-    python main.py
+    python src/main.py
     ```
 
 5.  Siga as instruções apresentadas no menu interativo.
 
 ## Documentação do Projeto
 
-Para uma compreensão mais aprofundada da arquitetura e do funcionamento do sistema, consulte os seguintes documentos:
+Para uma compreensão mais aprofundada da arquitetura e do funcionamento do sistema, consulte os seguintes documentos na pasta `/doc`:
 
--   **[📄 Manual de Utilização](MANUAL.md)**: Um guia para o usuário final sobre como operar o sistema.
--   **[📐 Diagrama de Classes (UML)](diagrama_uml.md)**: Uma representação visual das classes e seus relacionamentos.
--   **[🌊 Fluxograma do Sistema](fluxograma.md)**: Um diagrama que ilustra o fluxo principal de execução da aplicação.
+-   **[📄 Manual de Utilização](doc/MANUAL.md)**: Um guia para o usuário final sobre como operar o sistema.
+-   **[📐 Diagrama de Classes (UML)](doc/diagrama_uml.md)**: Uma representação visual das classes e seus relacionamentos.
+-   **[🌊 Fluxograma do Sistema](doc/fluxograma.md)**: Um diagrama que ilustra o fluxo principal de execução da aplicação.

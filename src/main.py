@@ -136,20 +136,35 @@ def ui_exibir_extrato(clientes):
     if not conta:
         return
 
-    print(f"\n================ EXTRATO - {conta.__class__.__name__} ================")
-    transacoes = conta.historico.transacoes
+    print("\n================ EXTRATO =============...")
+    
+    filtro = input("Deseja filtrar por tipo de transação? (s/d/t para saque/depósito/transferência ou deixe em branco para todas): ").lower()
+    tipo_filtro = None
+    if filtro == 's':
+        tipo_filtro = 'saque'
+    elif filtro == 'd':
+        tipo_filtro = 'deposito'
+    elif filtro == 't':
+        tipo_filtro = 'transferencia'
+
     extrato = ""
-    if not transacoes:
-        extrato = "Não foram realizadas movimentações."
-    else:
-        for transacao in transacoes:
-            tipo_transacao = transacao['tipo'] + ":"
-            valor_transacao = f"R$ {transacao['valor']:.2f}"
-            extrato += f"\n{tipo_transacao:<25} {valor_transacao:>15}\t{transacao['data']}"
+    tem_transacao = False
+    for transacao in conta.historico.gerar_relatorio(tipo_transacao=tipo_filtro):
+        tem_transacao = True
+        tipo_transacao_str = transacao['tipo'] + ":"
+        valor_transacao = f"R$ {transacao['valor']:.2f}"
+        extrato += f"\n{tipo_transacao_str:<25} {valor_transacao:>15}\t{transacao['data']}"
+
+    if not tem_transacao:
+        extrato = "\nNão foram realizadas movimentações" 
+        if tipo_filtro:
+            extrato += f" do tipo '{tipo_filtro}'."
+        else:
+            extrato += "."
 
     print(extrato)
     print(f"\nSaldo:\t\tR$ {conta.saldo:.2f}")
-    print("========================================================")
+    print("========================================")
 
 def ui_transferir(clientes):
     cliente = ui_obter_cliente(clientes)

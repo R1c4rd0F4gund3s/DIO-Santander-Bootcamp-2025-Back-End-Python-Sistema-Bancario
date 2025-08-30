@@ -158,6 +158,20 @@ class Historico:
             }
         )
 
+    def gerar_relatorio(self, tipo_transacao=None):
+        for transacao in self._transacoes:
+            if tipo_transacao is None or transacao["tipo"].lower() == tipo_transacao.lower():
+                yield transacao
+
+    def transacoes_do_dia(self):
+        transacoes_hoje = []
+        data_hoje = datetime.utcnow().date()
+        for transacao in self.transacoes:
+            data_transacao = datetime.strptime(transacao['data'], '%d-%m-%Y %H:%M:%S').date()
+            if data_hoje == data_transacao:
+                transacoes_hoje.append(transacao)
+        return transacoes_hoje
+
 
 class Transacao(ABC):
     @property
