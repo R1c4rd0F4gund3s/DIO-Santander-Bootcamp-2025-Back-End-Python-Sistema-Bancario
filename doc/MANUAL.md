@@ -1,58 +1,94 @@
-# Sistema Bancário em Python (POO)
+# 🏦 Manual de Utilização — Sistema Bancário
 
-![Python](https://img.shields.io/badge/python-3.11-blue.svg)
+Este manual orienta o uso do Sistema Bancário via linha de comando.
 
-Este projeto é uma simulação de um sistema bancário desenvolvido em Python, utilizando os princípios da Programação Orientada a Objetos (POO). O sistema é executado via linha de comando (CLI) e foi estruturado de forma modular para facilitar a manutenção, testabilidade e futuras expansões.
+---
 
-## Funcionalidades
+## 1️⃣ Iniciando a Aplicação
 
--   **Gerenciamento de Clientes e Contas**: Crie múltiplos clientes e associe a eles diferentes tipos de contas.
--   **Tipos de Contas**: Suporte para Conta Corrente, Conta Poupança e Conta Investimento, cada uma com suas próprias regras de negócio.
--   **Operações Bancárias**: Realize depósitos, saques e transferências entre contas.
--   **Histórico de Transações**: Todas as operações são registradas e podem ser consultadas no extrato da conta.
--   **Persistência de Dados**: O estado da aplicação (clientes e contas) pode ser salvo ao sair e recarregado ao iniciar, permitindo a continuidade entre sessões.
--   **Configuração de Sessão**: O usuário pode escolher se deseja ou não salvar os dados ao final de cada sessão.
+Para iniciar o sistema, navegue até o diretório `banco_modular` e execute:
+```bash
+python src/main.py
+```
 
-## Arquitetura do Projeto
+### ♻️ Carregando Dados Anteriores
 
-O projeto foi organizado nas seguintes pastas:
+Ao iniciar:
+> **Deseja [c]arregar os dados ou iniciar uma [n]ova sessão?**
+- 🔄 Digite `c` para continuar de onde parou
+- 🆕 Digite `n` para iniciar uma sessão nova (os dados antigos serão apagados)
 
--   **/src**: Contém todo o código-fonte da aplicação.
-    -   `main.py`: Ponto de entrada da aplicação (UI).
-    -   `modelos.py`: Classes de dados (Cliente, Conta, etc.).
-    -   `servicos.py`: Lógica de negócio.
-    -   `decorators.py`: Decoradores customizados.
-    -   `excecoes.py`: Exceções customizadas.
-    -   `persistencia.py`: Lógica de persistência de dados.
-    -   `utils.py`: Funções utilitárias.
-    -   `config.py`: Constantes e configurações.
--   **/doc**: Armazena a documentação do projeto.
--   **/images**: Para armazenar imagens (se aplicável).
--   **/scripts**: Para scripts auxiliares (se aplicável).
+---
 
-## Como Executar
+## 🏠 Menu Principal
 
-1.  Certifique-se de ter o Python 3 instalado.
-2.  Clone este repositório.
-3.  Navegue até o diretório `banco_modular/` pelo seu terminal.
-4.  Execute o seguinte comando:
+Após a inicialização, o menu principal exibe:
 
-    ```bash
-    python src/main.py
-    ```
+- 💰 `[d] Depositar`: Iniciar depósito em uma conta
+- 🏧 `[s] Sacar`: Sacar um valor de uma conta
+- 📄 `[e] Extrato`: Exibir extrato de uma conta
+- 🔁 `[t] Transferir`: Transferir valores entre contas
+- 👤 `[nu] Novo Usuário`: Cadastrar novo cliente
+- 🏦 `[nc] Nova Conta`: Criar conta para cliente existente
+- 📋 `[lc] Listar Contas`: Resumo das contas cadastradas
+- 🗂️ `[lu] Listar Usuários`: Dados de todos os clientes
+- ⚙️ `[cf] Configurações`: Menu de configurações
+- ❌ `[q] Sair`: Encerra a aplicação
 
-5.  Siga as instruções apresentadas no menu interativo.
+---
 
-## Documentação do Projeto
+## 🧩 Detalhes das Operações
 
-Para uma compreensão mais aprofundada da arquitetura e do funcionamento do sistema, consulte os seguintes documentos na pasta `/doc`:
+### 💸 Depósito, Saque e Transferência
 
--   **[📄 Manual de Utilização](doc/MANUAL.md)**: Um guia para o usuário final sobre como operar o sistema.
--   **[📐 Diagrama de Classes (UML)](doc/diagrama_uml.md)**: Uma representação visual das classes e seus relacionamentos.
--   **[🌊 Fluxograma do Sistema](doc/fluxograma.md)**: Um diagrama que ilustra o fluxo principal de execução da aplicação.
+Para estas operações, serão solicitados:
+1. 🆔 **CPF** do cliente
+2. 💳 Seleção da conta (se houver mais de uma)
+3. 💲 Valor da operação
 
-## Contato
+### 📄 Extrato
 
-#### Ricardo Fagundes
-[e-mail](fagundz@gmail.com)
-[Linkedin](https://www.linkedin.com/in/ricardofagundes)
+Ao selecionar extrato, você pode filtrar:
+> **Deseja filtrar por tipo de transação? (s/d/t para saque/depósito/transferência ou deixe em branco para todas):**
+- 🏧 `s`: Saques
+- 💰 `d`: Depósitos
+- 🔁 `t`: Transferências
+- ⏸️ _Enter_: Todas as transações
+
+### 👤 Novo Usuário
+
+Dados necessários:
+- 📝 Nome completo
+- 🎂 Data de nascimento (dd-mm-aaaa)
+- 🆔 CPF (apenas números)
+- 🏠 Endereço completo
+- ☎️ Telefone/Celular (com DDD)
+
+### 🏦 Nova Conta
+
+1. Informe o **CPF** do cliente
+2. Escolha o tipo: Conta Corrente, Poupança ou Investimento
+3. Para Conta Investimento, selecione o tipo de ativo
+
+---
+
+## ⚙️ Configurações
+
+No menu `[cf]` é possível alterar:
+
+- 💾 **Salvar dados ao sair**: 
+  - Pressione `1` para alternar entre Ativado/Desativado
+  - Se **Ativado**: dados salvos em `bank_data.pkl` ao sair
+  - Se **Desativado**: dados não serão salvos
+
+---
+
+## 👩‍💻 Para Desenvolvedores
+
+### 🪵 Log de Transações
+
+Todas as operações (criação de cliente, conta, transações) são registradas no console, com data, hora, função e argumentos.
+
+---
+
+Se desejar ajustes nos ícones, estrutura ou tradução, posso adaptar o manual conforme sua preferência!
