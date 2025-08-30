@@ -90,5 +90,3 @@ No menu `[cf]` é possível alterar:
 Todas as operações (criação de cliente, conta, transações) são registradas no console, com data, hora, função e argumentos.
 
 ---
-
-Se desejar ajustes nos ícones, estrutura ou tradução, posso adaptar o manual conforme sua preferência!
