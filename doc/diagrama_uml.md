@@ -56,6 +56,8 @@ classDiagram
         -_transacoes: list
         +transacoes: list
         +adicionar_transacao(transacao)
+        +gerar_relatorio(tipo_transacao)
+        +transacoes_do_dia()
     }
 
     class Transacao {
